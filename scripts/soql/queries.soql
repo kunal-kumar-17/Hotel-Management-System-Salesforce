@@ -1,0 +1,30 @@
+-- 1. Get reservations for room RM-001
+SELECT Id, Name, Room__r.Name, Guest__r.Name, Check_In_Date__c, Check_Out_Date__c, Reservation_Status__c 
+FROM Reservation__c 
+WHERE Room__r.Name = 'RM-001'
+
+-- 2. Get reservations for a specific guest
+SELECT Id, Name, Guest__r.Name, Guest__r.Last_Name__c, Room__r.Name, Reservation_Status__c 
+FROM Reservation__c 
+WHERE Guest__r.Name = 'Aarav'
+
+-- 3. Get all active reservations
+SELECT Id, Name, Room__r.Name, Guest__r.Name, Reservation_Status__c, Check_In_Date__c, Check_Out_Date__c 
+FROM Reservation__c 
+WHERE Reservation_Status__c IN ('Confirmed', 'Checked-In')
+
+-- 4. Get reservations within October 2026
+SELECT Id, Name, Room__r.Name, Check_In_Date__c, Check_Out_Date__c, Estimated_Amount__c 
+FROM Reservation__c 
+WHERE Check_In_Date__c >= 2026-10-01 AND Check_Out_Date__c <= 2026-10-31
+
+-- 5. Parent-to-Child: Rooms with their related reservations
+SELECT Id, Name, Room_Type__c, Room_Status__c, 
+       (SELECT Id, Name, Check_In_Date__c, Check_Out_Date__c, Reservation_Status__c FROM Reservations__r) 
+FROM Room__c
+
+-- 6. Child-to-Parent: Reservations with Room and Guest details
+SELECT Id, Name, Reservation_Status__c, 
+       Room__r.Name, Room__r.Room_Type__c, Room__r.Room_Rate__c, 
+       Guest__r.Name, Guest__r.Last_Name__c, Guest__r.Email__c, Guest__r.Mobile_Number__c 
+FROM Reservation__c
