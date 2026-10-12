@@ -38,3 +38,16 @@ Built 6 custom reports and an operations dashboard to track:
 * Current month reservations by room type
 * Monthly estimated revenue
 * Cancelled reservations and booking history
+## Project Screenshots
+
+### Operations Dashboard
+![Dashboard](dashboard.png.jpg)
+
+### Record-Triggered Flow (Reservation Automation)
+![Flow](flow.png.jpg)
+
+### SOQL Parent-to-Child Relationship Query Output
+![SOQL Output](Parent-to-Child%20Query%20-%20Room%20with%20related%20Reservations.jpg)
+
+### Hotel Management App - Rooms Inventory
+![App Rooms](app-rooms.png.jpg)
